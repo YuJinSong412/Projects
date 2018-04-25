@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>설문조사</title>
+	<meta charset="utf-8" /> 
+	<style>
+	*{
+		background-color: aliceblue;
+	}
+	header{
+		text-align:center;
+		margin-top:100px;
+		margin-bottom: 60px;
+		font:normal bold 50px jokerman,sans-serif;
+		color:brown;
+
+	}
+	section{
+		margin-left:530px;
+		margin-top:30px;
+	}
+	span{
+		color:blue;
+		font-weight: bold;
+	}
+	footer{
+		text-align:right;
+	}
+	button{
+		width:70px;
+		height: 40px;
+		border-radius:10px;
+		background-color:pink;
+		font:normal normal 20px "Lucida Console",sans-serif;
+	}
+   </style>
+</head>
+<body>
+	<header>설문지</header>
+	<hr style="border-width:1px; border-color:brown;">
+	<section>
+		<span>1. 학년</span> &nbsp;&nbsp;<input type="radio" name="age" value="1">1학년 &nbsp; <input type="radio" name="age" value="2">2학년 &nbsp; <input type="radio" name="age" value="3">3학년 &nbsp; <input type="radio" name="age" value="4">4학년<br><br><br>
+		<span>2. 대학교</span>&nbsp;<input type="text" value=""><br><br><br>
+		<span>3. 전공</span>&nbsp;<input type="text" value=""><br><br><br>
+		<span>4. 전공이 적성에 맞으세요?</span><br><br>
+		<div style="padding-left:40px">
+		<input type="radio" name="department" value="1">예&nbsp;&nbsp;
+		<input type="radio" name="department" value="2">아니오<br><br><br>
+	    </div>
+	    <span>5. 전공 공부하면서 어려운 점</span><br><br>
+	    <div style="padding-left:40px">
+	    <textarea type="text" rows="5" cols="25" value=""></textarea><br><br><br>
+	    </div>
+	    <span>6. 남기고 싶은 말</span><br><br>
+	    <div style="padding-left:40px">
+	    <textarea type="text" rows="5" cols="40"></textarea><br>
+	    <small style="color:red;font-size:10px;">★필수에용!!★</small><br><br>
+	    </div>
+	    <button type="button" style="margin-left:140px;">제출</button>
+	</section>
+	<footer>
+		<p style="background-color:pink;border-radius:50px; color:brown"><img src="kaka.jpg" style="width:20px; height:20px;"> yujin's survey&nbsp;&nbsp;</p>
+	</footer>
+</body>
+</html>
