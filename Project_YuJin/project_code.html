@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome!</title>
+  <style>
+    li{
+    	list-style: none;
+    	display: inline-block;
+    	font-weight: lighter;
+    	margin:1em;
+    }
+    a{
+    	color:black;
+    }
+    a:link{
+    	text-decoration: none;
+    }
+    ul{
+    	position: fixed; 
+    	width: 100%;
+    	text-align: center;
+    	background-color:#F74848;
+    	margin-top:0;
+    }
+    li:hover{
+    	font-weight: normal;
+    }
+    #book{
+    	background-color:#41F2A3;
+    	color:white;
+    	padding:0.5em 0.7em;
+    	border-radius: 0.5em;
+    	border:0.3px solid black;
+    }
+    header{
+    	margin:0;
+    	padding:0;
+    	width:auto;
+    	height:768px;
+    	background-color:red;
+    	background: url("assets/restaurant/cover_light.jpg");
+    	background-size:100% 100%;
+    }
+    .restaurant{
+    	color:white;
+    	float:left;
+    	padding:2em;
+    	margin:15em;
+    }
+    .form{
+    	width: 21.875em;
+    	height: 25.625em;
+    	background-color:white;
+    	display: inline-block;
+    	font-weight: lighter;
+    	margin-top: 13em;
+    }
+    p{
+    	text-align: center;
+    	padding-top: 0.5em;
+    	font-size:1.5em;
+    	font-weight: normal;
+    }
+    .mix{
+    	padding:0.5em 3em;
+    	line-height:1.875em;
+    }
+    input{
+    	border-radius: 0.5em;
+    	width:18em;
+    	height: 2.2em;
+    }
+    button{
+    	background: #41F2A3;
+    	border:none;
+    	color:white;
+    	padding:1em 5.8em;
+    	margin-top:3em;
+    	border-radius:1em;
+    	transition: background-color 0.3s;
+    }
+    button:hover{
+    	background-color:rgb(102,173,147);
+    }
+    .sign{
+    	height: 500px;
+    	margin-left:25%;
+    	margin-top:5%;
+    	margin-bottom:5%;
+    }
+    #yujin{
+    	width: 300px;
+    	height: 380px;
+    	left:500px;
+    	top:800px;
+    	padding:2em 2em;
+    	display: inline-block;
+    }
+    .yujin2{
+    	display: inline-block;
+    	margin:0;
+    	padding-right:20px;
+    }
+    .box{
+    	border:35px solid #DBC416;
+    	margin-right: 26%;
+    }
+    .picture{
+    	height: 370px;
+    	width: 100%;
+    	margin-bottom:4.5%;
+    }
+    .pic{
+    	display: inline-block;
+    	width: 248px;
+    	height:180px; 
+    	
+    }
+    #food{
+    	height: 720px;
+    	padding-top: 90px;
+    }
+    .food2{
+    	width: 700px;
+    	height: 620px;
+    	border:30px solid #F74848;
+    	margin-left: 25%;
+    }
+   table td{
+   	text-align: center;
+   	padding-top: 20px;
+   	padding-bottom: 10px;
+   }
+   table th{
+   	font-size:25px;
+   	font-weight: normal;
+   }
+   .people{
+   	height: 500px;
+   	background-image: url("assets/restaurant/testimonal_background_light.jpg");
+   	background-size: 100% 100%;
+   }
+   .people2{
+   	width: 100%;
+   	height: 500px;
+   	background-color: rgba(65,242,163,0.8);
+   }
+   .people3{
+   	width: 400px;
+   	height: 470px;
+   	margin-left: 38%;
+   }
+   .me{
+   	margin-left: 100px;
+   	margin-top: 50px;
+   	border-radius: 50%;
+   }
+   .write{
+   	color:white;
+   	font-size:1em;
+   }
+   #comfortable{
+   	height: 650px;
+   	width: 100%;
+   	padding-top:50px;
+   }
+   .comfortable2{
+   	width: 800px;
+   	height: 500px;
+   	border:30px solid #F74848;
+   	margin-left: 23%;
+   	margin-top: 5%;
+   }
+   .button2{
+   	background-color: white;
+   	color: #41F2A3;
+   	border:1.5px solid #41F2A3;
+   }
+   .button2:hover{
+   	color:white;
+   	background-color: #41F2A3;
+   }
+   .month{
+   	font-weight: lighter;
+   	font-size: 20px;
+   	color:gray;
+   }
+   .haha{
+   	border:1px solid #F74848;
+   	color:#F74848;
+   	background-color: white;
+   }
+   .haha:hover{
+   	background-color: #F74848;
+   	color:white;
+   }
+   #Book{
+   	margin-top:100px;
+   	height: 700px; 
+   	width: 100%;
+   	background-image:url("assets/restaurant/makereservation_light.jpg");
+   	background-size: 100% 100%;
+   	
+   }
+   .form2{
+   	width: 400px;
+   	height: 500px;
+   	background-color: white;
+   	margin:5% 35%;
+   }
+   .tt{
+   	background-color: #F74848;
+   }
+   .tt:hover{
+   	background-color: #FF0000;
+   }
+   .footer{
+   	height: 350px;
+   	width: 100%;
+   	background-color: black;
+   	color:white;
+
+   }
+   .haha a{
+   	color:#F74848;
+   }
+   .haha a:hover{
+   	color:white;
+   }
+  </style>
+</head>
+<body>
+	<div id="wrapper">
+	<header id="main">
+		<nav>
+			<ul>
+				<li><a href="#main">YuJin's</a></li>
+				<li><a href="#food" class="nu">MENU</a></li>
+				<li><a href="#comfortable">VENUE</a></li>
+				<li class="last" id="book"><a href="#Book">BOOK</a></li>
+			</ul>
+		</nav>
+		<div class="restaurant">
+			<span style="font-weight:nomal; font-size:3.5em;" >Restaurant</span><br>The most delicious house
+		</div>
+		<div class="form">
+			<p>Make a reservation</p>
+			<div class="mix">
+			<label>Name<br><input type="text" placeholder ="  Type here"></label><br>
+			<label>Time<br><input type="Time"></label><br>
+			<label>People<br><input type="number" value="0"></label>
+			<button type="button">Reserve a table</button>
+		    </div>
+		</div>
+	</header>
+	<section>
+		<article class="sign">
+			<div class="box">
+			<div id="yujin">
+				<span style="font-weight: lighter">The best cook</span><br>
+				<span style="font-size:2em">YuJin Song</span><br>
+					 <img src="assets/styleguide/star.png" width="18px" style="padding-right:7px;padding-top:30px;">
+					<img src="assets/styleguide/star.png" width="18px" style="padding-right:7px;padding-top:30px;">
+					<img src="assets/styleguide/star.png" width="18px" style="padding-right:7px;padding-top:30px;">
+					<img src="assets/styleguide/star.png" width="18px" style="padding-right:7px;padding-top:30px;">
+					<img src="assets/styleguide/star.png" width="18px">
+					<p style="font-weight: lighter; font-size:1em;  width:400px; height:200px; text-align: left;" >
+					빛나는 미모의 소유자, 요리 실력도 best!!<br>직접 개발한 양념과 재료로 승부한다.<br>
+					지금 바로 주문하세요!<br>
+					<img src="assets/restaurant/signature_dark.png" width="300px" height="200px">
+				</p>
+			</div>
+			<div class="yujin2">
+				<img src="assets/restaurant/chef_light.jpg" width="380px" height="420px">
+			</div>
+		</div>
+		</article>
+	</section>
+	<section class="picture">
+		<div id="picture2">
+		<div class="pic">
+		<img src="assets/restaurant/food_12_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic">
+		<img src="assets/restaurant/food_11_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic">
+		<img src="assets/restaurant/food_10_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic">
+		<img src="assets/restaurant/food_9_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic">
+		<img src="assets/restaurant/food_8_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic">
+		<img src="assets/restaurant/food_7_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_5_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_6_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_4_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_3_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_2_light.jpg" width="260px" height="180px" >
+	</div>
+	<div class="pic" style="padding-top: 20px;">
+		<img src="assets/restaurant/food_1_light.jpg" width="260px" height="180px" >
+	</div>
+</div>
+	</section>
+	<section id="food">
+		<div class="food2">
+			<p style="font-weight:normal; font-size:2.5em;text-align: center; padding-top: 0;">메뉴<br><span style="font-weight: lighter; font-size:0.4em;">by yujin's</span></p>
+			<table>
+				<thead>
+					<tr>
+						<th>일식</th><th>한식</th><th>양식</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>초밥정식<br>연어,새우,광어<br>[ 1.0 ]</td><td>부대찌개<br>#밥은 무한리필<br>[ 1.0 ]</td><td>스테이크<br>#감자 서비스<br>[ 1.0 ]</td>
+					</tr>
+					<tr>
+						<td>화정식<br>연어,전복,새우,문어<br>[ 1.5 ]</td><td>유진천국<br>#김천에서 파는 것 중 하나 고르기<br>[ 고르는거 봐서 ]</td><td>피자<br>고르곤,화덕,일반<br>[ 1.2 ]</td>
+					</tr>
+					<tr>
+						<td>돈까스&우동<br>#새우튀김2개 서비스<br>[ 0.9 ]</td><td>제육볶음<br>#불고기도 조금 드림<br>[ 0.8 ]</td><td>치킨<br>#간장,양념,후라이드,파닭<br>[ 1.1 ]</td>
+					</tr>
+					<tr>
+						<td>오늘의 메뉴<br>랜덤으로 드려요.#음료 서비스~<br>[ 1.0 ]</td><td>월남쌈<br>#고기추가 가능<br>[ 1.5 ]</td><td>파스타<br>토마토,크림,오일<br>[ 0.9 ]</td>
+					</tr>
+				</tbody>
+			</table>
+		    </div>
+	</section>
+	<section class="people">
+		<div class="people2">
+			<div class="people3">
+				<img src="assets/restaurant/testimonial_3_light.jpg" width="200" height="250" class="me">
+				<p class="write">제가 만든거지만 너무 맛있어요!<br>무조건 추천합니다.♥</p>
+				<p>
+					<img src="assets/styleguide/star2.png" width="30"><img src="assets/styleguide/star2.png" width="30"><img src="assets/styleguide/star2.png" width="30"><img src="assets/styleguide/star2.png" width="30"><img src="assets/styleguide/star2.png" width="30"></p>
+			</div>
+		</div>
+	</section>
+	<section id="comfortable">
+		<div class="comfortable2">
+			<table>
+				<tbody>
+					<tr>
+						<td style="text-align: left;padding: 20px""><span style="font-weight: lighter;">Feel comfortable, like home</span><br><br><span style="font-size:30px;">Welcome to YuJin's Palace</span><br><br><br><span style="line-height: 30px; font-weight: lighter;">유진스의 궁전에 오신 것을 환영합니다:)<br>저희는 저렴한 가격에 음식을 호화롭게 즐길 수 있습<br>니다.<br>꿈속에서도 나오지 않나요...?my..palace..<br>당신은 이제 저의 유진교에 빠지셨습니다.<br>The Love..♡</span><br>
+							<form>
+								<button type="button" class="button2">View the gallery</button>
+							</form>
+						</td>
+						<td>
+							<img src="assets/restaurant/venue_4_light.jpg" width="400" height="450">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	<section class="event" style="width: 100%; height:800px;">
+		<p style="font-weight: lighter; font-size:20px; line-height: 40px;">다양한 이벤트도 준비되어 있어요!<br><span style="color:#F74848; font-size:40px; font-weight: normal;">Upcoming events</p>
+			<table style="margin-left: 15%;">
+				<tr>
+					<td style="padding:20px 30px; text-align: left; line-height:25px;"><img src="assets/restaurant/event_1_light.jpg" width="300" height="400"><br><br><span class="month">26th May,2018</span><br><span style="font-size:20px; font-weight: bold;">cocktail & beer party</span><br><br>저녁 7시부터 칵테일 & 맥주 파티가 있을<br> 예정입니다!!!:)<br><br>
+					<form>
+						<button type="button" class="haha"><a href="#main">Book now!</a></button>
+					</form>
+					</td>
+					<td style="padding:20px 30px;text-align: left;"><img src="assets/restaurant/event_2_light.jpg" width="300" height="400"><br><span class="month">30th August,2018</span><br><br>리뷰를 작성한 손님들을 대상으로 추<br>첨을 통해 상품을 드립니다><
+						<form>
+						<button type="button" class="haha"><a href="#main">Writing a review</a></button>
+					</form>
+					</td>
+					<td style="padding:20px 30px;text-align: left;"><img src="assets/restaurant/event_3_light.jpg" width="300" height="400"><br><span class="month">12th April,1997</span><br><span style="font-size:20px; font-weight: bold;">유진교 가입 전 확인~</span><br><br>유진교에 들어오기 전에 불안함을 없<br>애드려야죠~?<br>이런 사람이다!를 알려드리겠슴당(_ _)<br>
+					<form>
+						<button type="button" class="haha" onclick="alert('https://github.com/YuJinSong412/로 들어가보세요!!')">go Github!</button>
+					</form></td>
+				</tr>
+			</table>
+	</section>
+	<section id="Book">
+		<div style="width:100%; height:700px; background-color:rgba(188,204,16,0.6); padding-top: 40px; ">
+			<div class="form2">
+			<p>Make a reservation</p>
+			<p style="font-weight: lighter; font-size:15px; text-align: left; padding-left: 25px;">Book your table in advance. No cue, no waiting lists.<br> Pre-order your favourite dish or suggest new recipes<br> to our chefs. We will do all our best for complying to<br> your requests!!!! <br>Thank you♥</p>
+			<div class="mix">
+			<label>Name<br><input type="text" placeholder ="  Type here"></label><br>
+			<label>Time<br><input type="Time"></label><br>
+			<label>People<br><input type="number" value="0"></label>
+			<button type="button" class="tt">Reserve a table</button>
+		    </div>
+		</div>
+	</section>
+	<footer class="footer">
+		<div class="contact" style="display: inline-block; margin-top: 90px;margin-left: 30%;">
+			<span style="font-weight: normal; font-size:30px;">Contact</span><br><br>
+			<span style="font-weight: lighter;">tel:010-1004-4001<br>
+			sssssss4@gmail.com</span>
+		</div>
+		<div class="location" style="display: inline-block;margin-left: 80px;">
+			<span style="font-weight: normal;font-size:30px;">Location</span><br><br>
+		    <span style="font-weight: lighter;">천국시 매력구 이쁜동<br>여신하우스(우편번호:1004)</span>
+		</div>
+		<div class="openings" style="display: inline-block;margin-left: 80px;">
+			<span style="font-weight: normal;font-size:30px;">Openings</span><br><br>
+			 <span style="font-weight: lighter;">11:00 - 15:00 & 19:00 - 00:00 Tue/Fri<br>
+			11:00 - 15:00 & 19:00 - 02:00 Sat/Sun</span>
+		</div><br><br><br><br><br><br>
+		<p style="font-weight: lighter; font-size:15px; vertical-align:text-bottom; color:gray">© goddess 2018 YuJin's - Praise me.</p>
+	</footer>
+</div>
+</body>
+</html>
