@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1일1생각</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script>
+        $(function() {
+            
+          $(".heart").on("click", function() {
+            $(this).toggleClass("heart-blast");
+          });
+        }); 
+    </script>  
+</head>
+<body>
+    <div class="header">
+
+        <img class="logo" src="/Logo.png" alt="Logo">
+      
+    </div>
+    <div class="contentUser">
+        <div class="tabs">
+            <div class="ck-button">
+
+                    <a href="/comment/<%=@num%>/pos"><span>찬성</span></a>
+           
+            </div>
+            <div class="ck-button">
+                
+                    <span style="color:black;border-bottom: 1px solid black;">중립</span>
+            
+            </div>
+            <div class="ck-button">
+                    <a href="/comment/<%=@num%>/con"><span>반대</span></a>
+               
+            </div>
+        </div>
+        
+        <div class="userThinkType">
+            <!--comment들을 하나씩 돌아가면서 출력-->
+            <% @comment.each do |com|%>
+            <!--category==1 검사 안하면 에러남-->
+            <% if com.category == 1 %>
+                <% next %>
+            <% elsif com.category == 2 %>
+            <div class="userThinkingArea">
+                <div class="hartArea">
+                    <form action="/comment/<%=com.id%>/like" method="get">
+                        <button class="heart"></button>
+                    </form>
+                    <p><%=com.likes.size%></p>   
+                </div>
+                <div class="textThinkArea">
+                    <% n = com.Users_id %>
+                    <% k = User.find n %>
+                    <h2 class="nickname"><%=k.name%></h2>
+                    <p class="userThinking">
+                        <%=com.contents%>
+                    </p>
+                    </div>
+                <div class="lineArea">
+                    <div>
+                        <hr>
+                    </div>
+                    <!-- created_at에 있는 시간 형식 포맷 변경 -->
+                    <p><%= com.created_at.strftime("%H시 %M분") %></p>
+                    <div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            <%end%>
+        
+        </div>
+    </div>

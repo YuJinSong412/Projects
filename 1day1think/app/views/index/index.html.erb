@@ -1,0 +1,27 @@
+
+<div class="header">
+
+<img class="logo" src="/Logo.png" alt="Logo">
+
+</div>
+
+
+<div class="content">
+<div class="mainOnedayThink">
+  <div class="container">
+    <p><%=@contents%></p>
+    <a href="<%=@link%>" target="_blank">더 자세한 내용이 알고싶다면</a>
+  </div>
+</div>
+<div class="positionThink">
+  <ul id="tabs" class="tabs">
+      <li><a href="/opi1/<%=@num%>" class="<%=@n1%>">긍정</a></li> <!-- @n1, @n2, @n3로 클래스 값 부여 -->
+      <li><a href="/opi2/<%=@num%>" class="<%=@n2%>">중립</a></li>
+      <li><a href="/opi3/<%=@num%>" class="<%=@n3%>">부정</a></li>
+  </ul>
+<div id="pro" class="NewsIssue"><p><%=@opi%></p></div>
+</div>
+</div>
+<div class="footer">
+<a href="/write/pos/<%=@num%>">여러분의 의견은 어떠한가요?</a>
+</div>

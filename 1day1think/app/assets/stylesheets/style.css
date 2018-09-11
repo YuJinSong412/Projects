@@ -1,0 +1,352 @@
+html{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 800px;
+  font-size: 16px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+button{
+  border: 0px;
+}
+ul {
+  list-style: none;
+}
+
+
+body {
+  width: 800px;
+  margin: 0;
+  padding: 0;
+}
+.header{
+  justify-content: center;
+  display: flex;
+}
+.logo{
+  width: 27%;
+  height: 27%;
+  padding: 0;
+}
+
+
+.content {
+  background: url(/back.png);
+  height: 850px;
+  margin: 30px 30px 0 30px;
+  border: 1px solid rgb(168, 168, 168);
+  margin-bottom: 15px;
+}
+.mainOnedayThink{
+  justify-content: center;
+  display: flex;
+  height: 600px;
+  padding: 0 10px 0 10px;
+}
+.container{
+  padding: 0;
+  align-self: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.mainOnedayThink p{
+  font-size: 60px;
+  text-align: center;
+  font: bold;
+  padding: 0 0 60px 0;
+  margin: 0;
+}
+.mainOnedayThink a{
+  font-size: 30px;
+  text-align: center;
+  color: blue;
+  align-self: center;
+  width: 400px;
+}
+
+
+.positionThink{
+  border-top: 1px solid rgb(168, 168, 168);;
+  padding: 0;
+  height: 250px;
+}
+.tabs{
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+.tabs li a{
+  font-size: 30px;
+  text-decoration: none;
+  color: rgb(168, 168, 168);
+}
+.active{
+  color: black!important;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+.NewsIssue{
+  display: flex;
+  height: 180px;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.NewsIssue p{
+  padding: -5px 10px 0 10px;
+}
+.footer{
+  padding-top: 20px;
+  font-size: 40px;
+  text-align: center;
+}
+.footer a{
+  text-decoration: none;
+  color: black;
+}
+
+::-webkit-resizer {
+  display: none;
+}
+textarea{
+  border: 0px;
+  background:none;
+}
+
+
+
+/* writeThink */
+
+.ck-button {
+  padding: 10px;
+  color: rgb(168, 168, 168);
+  font-size: 40px;
+}
+.ck-button a{
+  color: rgb(168, 168, 168);
+}
+.writeContnet{
+  font-size: 40px;
+}
+.writeContnet p{
+  margin: 0;
+  padding: 15px;
+}
+.positionUserThink{
+  border-top: 1px solid rgb(168, 168, 168);
+  border-bottom: 0px; 
+  padding: 0;
+}
+.userwrite{
+  padding-top: 3px;
+  text-align: center;
+  justify-content: center;
+}
+.userwrite textarea{
+  width: 736px;
+  font-size: 40px;
+  border: 0px;
+}
+.FootBtn{
+  background-color: white;
+  display: flex;
+  height: 100px;
+  align-content: center;
+  justify-content: center;
+}
+.FootBtn input{
+  border: 0px;
+  background-color: white;
+  background-color: none;
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+}
+
+/* userThinkPage */
+
+.contentUser{
+  background: url(/back.png);
+  min-height: 850px;
+  margin: 0 30px 0 30px;
+  border: 1px solid rgb(168, 168, 168);
+  margin-bottom: 15px;
+}
+
+.userThinkType{
+  border-top: 1px solid rgb(168, 168, 168);;
+  overflow-y: scroll;
+  max-height: 1000px;
+  /* background-color: green; */
+}
+.textThinkArea{
+  padding: 0 100px;
+}
+.textThinkArea .nickname{
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.textThinkArea .userThinking{
+  font-size: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.userThinkingArea{
+  margin-bottom: -20px;
+}
+.lineArea{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lineArea p{
+  padding: 0 5px 0;
+}
+.lineArea div{
+  width: 300px;
+}
+.lineArea div hr{
+  border: none;
+  border: 1px dashed rgb(168, 168, 168);;
+}
+
+
+.hartArea{
+  float: left;
+  left: 685px;
+  position: relative;
+  width: 0px;
+  height: 0px;
+}
+
+.heart {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat;  
+  cursor: pointer;
+  
+}
+.hartArea p{
+  color: rgb(192, 114, 110);
+  margin: 0px;
+  position: relative;
+  right: 5px;
+  top: 20px;
+}
+.heart-blast {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+
+
+/* LoginPage */
+
+.Logincontain{
+  height: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Loginlogo{
+  width: 55%;
+}
+.google-login{
+  background-color: white;
+  text-indent:-10000px;
+  margin-top: 60px;
+  width: 420px;
+  height: 100px;
+  background-size: cover;
+  background-image: url("/img/Loginbutton/btn_google_signin_light_normal_web@2x.png")
+}
+.google-login:focus{
+  background-size: cover;
+  background-image: url("/img/Loginbutton/btn_google_signin_light_focus_web@2x.png")
+}
+.google-login:active{
+  background-size: cover;
+  background-image: url("/img/Loginbutton/btn_google_signin_light_pressed_web@2x.png")
+}
+
+/* category */
+.TittleArea{
+  margin-top:40px;
+}
+.TittleArea h2{
+  margin:0px;
+  font-size: 40px;
+}
+.TittleArea p{
+  font-size: 20px;
+}
+.categoryContain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.CheckboxContain{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.lavbelContain{
+  display: flex;
+  justify-content: center;
+}
+.categoryCheckbox {
+  padding: 10px;
+  color: black;
+  font-size: 40px;
+}
+.categoryCheckbox label span {
+  width: 170px;
+  margin: 20px;
+  border-radius: 30px;
+  background-color: rgb(231, 230, 230);
+  text-align: center;
+  display: block;
+}
+.categoryCheckbox label input {
+  position: absolute;
+  top: -20px;
+}
+.categoryCheckbox input:checked + span {
+  background-color: rgb(241, 229, 227);
+  color: black
+}
+
+.cateFootBtn{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+}
+.cateFootBtn input{
+  width: 100%;
+  font-size: 45px;
+  height: 100%;
+  background-color: white;
+  border: 0;
+}
+
+*{ font-family: 'KoreanEMPJ-L' !important; }
+@font-face {
+  font-family: 'KoreanEMPJ-L';
+  src: url('KoreanEMPJ-L.eot?#iefix') format('embedded-opentype'),  url('KoreanEMPJ-L.woff') format('woff'), url('KoreanEMPJ-L.ttf')  format('truetype'), url('KoreanEMPJ-L.svg#KoreanEMPJ-L') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

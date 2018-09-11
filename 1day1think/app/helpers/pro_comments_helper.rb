@@ -1,0 +1,2 @@
+module ProCommentsHelper
+end

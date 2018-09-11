@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1일1생각</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../js/app.js"></script>
+</head>
+<body>
+  <div class="header">
+   
+    <img class="logo" src="/Logo.png" alt="Logo">
+
+  </div>
+  
+  <form action="/pos_create/<%=@num%>" method="get">
+        <div class="content">
+            <div class="writeContnet">
+            <p><%= @contents %></p>
+            </div>
+            <div class="positionUserThink">
+                <div class="tabs">
+                    <div class="ck-button">  
+                        <span style="color:black;border-bottom: 1px solid black;">찬성</span>
+                    </div>
+                    <div class="ck-button">
+                         <a href="/write/neu/<%=@num%>"><span>중립</span></a>
+                    </div>
+                    <div class="ck-button">      
+                        <a href="/write/con/<%=@num%>"><span>반대</span></a>     
+                    </div>
+                </div>
+                <div id="pro" class="userwrite">
+                    <div class="userwrite">
+                        <textarea rows="15" name="comment"></textarea>
+                        <input type="hidden" name="news_num" value="<%=@num%>">
+                        <input type="hidden" name="user_num" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="FootBtn">
+            <input type="submit" value="의견 제출">
+        </div>
+    </form>
+    
+    
+    
+    
+
+  </body>
+  </html>
