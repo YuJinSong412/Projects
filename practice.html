@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>가천대학교</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap&subset=korean');
+        
+            *{
+                font-family: 'Nanum Gothic Coding', monospace;
+                padding:0rem;
+                margin:0rem;
+            }
+            
+            #header, #footer{
+                background-color:#1B0B6A;
+                padding:1.0rem 0rem 0.7rem 0.7rem;
+            }
+            
+            #content{
+                margin:0rem;
+                padding:0rem;
+                background-color:#FFFFFF;
+            }
+            
+            .nav{    
+                margin:0rem;
+                float:top;
+                height:4rem;
+                background-color:#FDFDFD;
+                border-bottom: 0.05rem solid #DCDCDC;
+            }
+            
+            .section{
+                margin:0px;
+                height: 50rem;
+            }
+            
+            #header h1{
+                color:white;    
+            }
+            
+            #footer p{
+                color:white;
+                font-size:0.5rem;
+            }
+            
+            .form{
+                padding:4rem;
+                color:#9E9E9E;
+                font-size:1rem;
+            }
+            
+            .formInterval{
+                padding:1.7rem 0rem 0.6rem 0rem;
+                border-bottom:0.05rem solid #DCDCDC;
+            }
+            
+            @media (min-width:37.5rem){
+                .nav{
+                    float:left;
+                    height: 70rem;
+                    width:  10rem;
+                    border-right: 0.05rem solid #DCDCDC;
+                }
+                
+                
+            }
+        </style>
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        
+    </head>
+
+    <body>
+        
+        <div data-role="page" id="page1">
+            
+            <div data-role="panel" id="login" data-display="overlay" data-theme="b"> 
+                <form>
+                    <h3>로그인 패널</h3>
+                    <label for="name">사용자명:</label>
+                    <input name="name" id="name" type="text" value="" data-mini="true" data-clear-btn="true">
+                    <label for="password">비밀번호:</label>
+                    <input name="password" id="password" type="password" value="" data-mini="true" data-clear-btn="true"> 
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                        <a href="#" data-role="button" data-rel="close">취소</a>
+                        </div>
+                        <div class="ui-block-b">
+                        <a href="#" data-role="button" data-rel="close">확인</a>
+                        </div> 
+                    </div>
+                </form> 
+                <div style="text-align: center;">
+                    <a href="#page2" style="color:white">회원가입</a>
+                </div>
+            </div>
+            
+            <div data-role="header" data-position="fixed" id="header">
+                <h1>가천대학교</h1>
+                <a href="#login" class="ui-btn-right">LOGIN</a>
+            </div>
+            
+            <div data-role="content" id="content">
+                <div class="nav">
+                    <a href="www.naver.com">naver</a>
+                </div>
+                <div class="section">
+                        
+                </div>
+            </div>
+            
+            <div data-role="footer" data-fullscreen="true" data-position="fixed" id="footer">
+                <p style="font-size:0.8rem;">가천대학교 | (13120)경기도 성남시 수정구 성남대로 1342 TEL.031)750-5114</p>
+                <p>copyright2019 bySongYuJin all rights reserved</p>
+            </div>
+    </div>
+
+        
+    <div data-role="page" id="page2">
+            
+        <div data-role="header" data-add-back-btn="true" data-back-btn-text="이전으로" data-position="fixed" id="header">
+            <h1>가천대학교</h1>
+        </div>
+        
+        <div data-role="content" id="content">
+            <div class="nav">
+                        
+            </div>
+                    
+            <div class="section">
+              <div class="form">
+                <form method="" action="">
+                    <fieldset class="fieldset">
+                       <!-- <legend>회원가입</legend> -->
+                        <div class="formInterval">
+                            <small>사용자 계정(ID)</small>
+                        <input type="text" name="id" id="loginId">
+                        </div>
+                        
+                        <div class="formInterval">
+                            <small>비밀번호</small>
+                        <input type="password" name="password" id="loginPW" >
+                        </div>
+                        
+                        <div class="formInterval">
+                            <small>비밀번호 확인</small>
+                        <input type="password" name="passwordcheck" id="PWcheck">
+                        </div>
+                        
+                        <div class="formInterval">
+                            <small>이름</small>
+                        <input type="text" name="name" id="loginName">
+                        </div>
+                        
+                        <div class="formInterval">
+                            <small>E-MAIL</small>
+                        <input type="email" name="emial" id="loginEmail">
+                        </div>
+                        
+                        <div style="text-align: center;">
+                        <input type="submit" value="회원가입" data-inline="true">
+                        </div>
+                    </fieldset>
+                </form>
+              </div>              
+            </div>
+        </div>
+        
+        <div data-role="footer" data-fullscreen="true" data-position="fixed" id="footer">
+            <p style="font-size:0.8rem;">가천대학교 | (13120)경기도 성남시 수정구 성남대로 1342 TEL.031)750-5114</p>
+            <p>copyright2019 bySongYuJin all rights reserved</p>
+        </div>
+        
+    </div>
+    
+    </body>
+</html>
