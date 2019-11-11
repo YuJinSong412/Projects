@@ -1,0 +1,169 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>학사관리</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <link rel="stylesheet" href="project.css" media="screen">
+    <script src="project.js"></script>
+    <script src="dbHandle.js"></script>
+    
+</head>
+<body>
+   <!--메인 페이지-->
+   <div data-role="page" id="page1">
+     
+    <!--로그인 패널-->
+    <div data-role="panel" id="login" data-display="overlay" data-theme="b"> 
+        <form>
+            <h3>로그인 패널</h3>
+            <label for="name1">아이디명:</label>
+            <input type="text" name="name1" id="name1" value="" data-clear-btn="true">
+            <label for="password1">비밀번호:</label>
+            <input name="password1" id="password1" type="password" value="" data-clear-btn="true"> 
+            <div class="loginOK">
+                    <input type="submit" id="submit1" value="로그인"/>
+            </div>
+        </form> 
+        <div class="signup">
+            <a href="#page2">회원가입</a>
+        </div>
+    </div>
+     
+      <!--헤더바-->
+      <div data-role="header" class="header">
+        <h1><img src="gachonlogo.png" class="gachonlogo">가천대학교</h1>
+        <a href="#login" class="ui-btn-right" data-icon="user" data-inline="true">Login</a>
+        
+        <div data-role="navbar" class="navi">
+              <ul>
+                <li><a href="#page2">비교과 프로그램</a></li>
+                <li><a href="#page1">자율활동</a></li>
+              </ul>
+        </div>
+      </div>
+      
+      <!--본문-->
+      <div data-role="content" class="content">
+       <div class="windsystem">
+           <img src="windSystem.png" width="200px">
+       </div><br><br>
+       <ul data-role="listview" data-inset="true" id="listArea">
+            <li id="item">데이터 불러오기...</li>
+       </ul>
+      </div>
+
+     <!--푸터바-->
+      <div data-role="footer" class="footer">
+        <p class="gachonInfo">
+          가천대학교 | (13120)경기도 성남시 수정구 성남대로 1342 TEL.031)750-5114 <br/>
+          copyright2019 bySongYuJin all rights reserved
+        </p>
+      </div>
+       
+    </div>
+    
+    <!--회원가입 페이지-->
+    <div data-role="page" id="page2" >
+            
+        <div data-role="header" class="header">
+           <a href="#" data-icon="back" data-rel="back" data-direction="reverse">이전</a>
+            <h1><img src="gachonlogo.png" class="gachonlogo">가천대학교</h1>
+            
+            <div data-role="navbar" class="navi">
+              <ul>
+                <li><a href="#page2">비교과 프로그램</a></li>
+                <li><a href="#page1">자율활동</a></li>
+              </ul>
+        </div>
+          </div>
+        
+        <div data-role="content" class="content">     
+            
+            
+                <form method="" action="" name="memberInfo">
+                   <div class="info">
+                    <label for="id">사용자 계정(ID)</label>
+                    <input type="text" name="id" id="loginID">
+                   </div>
+                   
+                   <div class="info">
+                    <label for="id">비밀번호</label>
+                    <input type="password" name="password" id="loginPW">
+                    </div>
+                       
+                    <div class="info">   
+                    <label for="id">비밀번호 확인</label>
+                    <input type="password" name="passwordcheck" id="PWcheck">
+                    </div>
+                    
+                    <div class="info">
+                    <label for="id">E-MAIL</label>
+                    <input type="email" name="email" id="loginEmail">
+                    </div>
+                    
+                    <div class="submit info">
+                    <input type="submit" value="회원가입" id="submit" data-inline="true">
+                    </div>
+                </form>
+                          
+            
+        </div>
+        
+        <div data-role="footer" class="footer" >
+        <p class="gachonInfo">
+          가천대학교 | (13120)경기도 성남시 수정구 성남대로 1342 TEL.031)750-5114 <br/>
+          copyright2019 bySongYuJin all rights reserved
+        </p>
+      </div>
+        
+    </div>
+    
+    
+    <div data-role="page" id="page3" >
+            
+        <div data-role="header" class="header">
+           <a href="#" data-icon="back" data-rel="back" data-direction="reverse">이전</a>
+            <h1><img src="gachonlogo.png" class="gachonlogo">가천대학교</h1>
+            
+            <div data-role="navbar" class="navi">
+              <ul>
+                <li><a href="#page2">비교과 프로그램</a></li>
+                <li><a href="#page1">자율활동</a></li>
+              </ul>
+        </div>
+          </div>
+        
+        <div data-role="content" class="content">
+        
+           <!--bar layout-->
+            <div class="ui-bar">
+                <img src="administration.png" alt="">
+                전체 내용
+            </div><br/>
+            
+        <!--block layout-->
+        <div class="ui-body ui-body-a">
+            <h4 class="h4">타이틀</h4>
+            <div class="systemImg"><img src="f1.jpeg"></div>
+            <p class="summary1">요약본</p>
+            <button>신청하기</button>
+        </div>
+        </div>
+        
+        <div data-role="footer" class="footer" >
+        <p class="gachonInfo">
+          가천대학교 | (13120)경기도 성남시 수정구 성남대로 1342 TEL.031)750-5114 <br/>
+          copyright2019 bySongYuJin all rights reserved
+        </p>
+      </div>
+        
+    </div>
+
+    
+</body>
+</html>
