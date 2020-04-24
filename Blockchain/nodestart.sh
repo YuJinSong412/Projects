@@ -1,0 +1,1 @@
+geth --networkid 5027 --mine --minerthreads 2 --datadir "./" --nodiscover --rpc --rpcport "8545" --rpccorsdomain "*" --nat "any" --rpcapi eth,web3,personal,net --allow-insecure-unlock --password ./password.sec --ipcpath "~/Library/Ethereum/geth.ipc"

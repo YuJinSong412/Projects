@@ -1,0 +1,32 @@
+=============== Apr 21, 2020 (KST) ===============
+19:03:58.368948 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:03:58.383676 db@open opening
+19:03:58.384202 version@stat F·[] S·0B[] Sc·[]
+19:03:58.397921 db@janitor F·2 G·0
+19:03:58.397958 db@open done T·14.25472ms
+19:04:28.796998 db@close closing
+19:04:28.797096 db@close done T·98.78µs
+=============== Apr 21, 2020 (KST) ===============
+19:06:45.020443 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:06:45.020643 version@stat F·[] S·0B[] Sc·[]
+19:06:45.020671 db@open opening
+19:06:45.020746 journal@recovery F·1
+19:06:45.020853 journal@recovery recovering @1
+19:06:45.030101 memdb@flush created L0@2 N·2 S·176B "loc..seq,v2":"version,v1"
+19:06:45.030405 version@stat F·[1] S·176B[176B] Sc·[0.25]
+19:06:45.056198 db@janitor F·3 G·0
+19:06:45.056240 db@open done T·35.556852ms
+19:07:12.460904 db@close closing
+19:07:12.461016 db@close done T·109.944µs
+=============== Apr 21, 2020 (KST) ===============
+19:07:36.649666 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:07:36.649935 version@stat F·[1] S·176B[176B] Sc·[0.25]
+19:07:36.649971 db@open opening
+19:07:36.650047 journal@recovery F·1
+19:07:36.650134 journal@recovery recovering @3
+19:07:36.660075 memdb@flush created L0@5 N·1 S·159B "loc..seq,v4":"loc..seq,v4"
+19:07:36.660401 version@stat F·[2] S·335B[335B] Sc·[0.50]
+19:07:36.687385 db@janitor F·4 G·0
+19:07:36.687439 db@open done T·37.456563ms
+19:12:06.976074 db@close closing
+19:12:06.976176 db@close done T·99.987µs
