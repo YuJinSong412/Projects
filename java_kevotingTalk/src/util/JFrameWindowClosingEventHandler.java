@@ -24,19 +24,17 @@ public class JFrameWindowClosingEventHandler extends WindowAdapter {
 		frame.dispose();
 		System.out.println("sd");
 
-		//본인 채팅방일때 
-		if(UserDAO.username.equals(frameName)) {
+		// 본인 채팅방일때
+		if (UserDAO.username.equals(frameName)) {
 			IndexPanel.userProfileButton.setText(frameName);
 		}
-		
-		//친구 채팅방일때 
-		for(JButton j : FriendListPanel.friendButtons) {
-			if(j.getText().contains(frameName)) {
+
+		// 친구 채팅방일때
+		for (JButton j : FriendListPanel.friendButtons) {
+			if (j.getText().contains(frameName)) {
 				j.setText(frameName);
 			}
-			System.out.println(j.getText());
-			System.out.println("aoaaoaaoa");
-			System.out.println(frameName);
+	
 		}
 
 	}

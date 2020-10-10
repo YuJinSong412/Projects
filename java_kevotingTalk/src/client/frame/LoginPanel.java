@@ -9,13 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import server.userDB.UserDAO;
-import util.CommonWord;
+import util.enumPackage.CommonWord;
 
+@SuppressWarnings("serial")
 public class LoginPanel extends UserInfoPanel {
 
   private final String LOGIN = "로그인";
 
-  private ArrayList<JTextField> userInfos = new ArrayList<JTextField>();
+  private ArrayList<JTextField> userInfos = new ArrayList<JTextField>();	//이메일과 비밀번호
 
   public LoginPanel() {
 

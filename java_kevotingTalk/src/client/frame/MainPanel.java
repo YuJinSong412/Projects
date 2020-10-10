@@ -8,80 +8,79 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import util.ColorSet;
-import util.CommonWord;
 import util.MainPanelButton;
 import util.UseImageFile;
+import util.enumPackage.CommonWord;
 
-
+@SuppressWarnings("serial")
 public class MainPanel extends JPanel {
 
-  private Image img = UseImageFile.getImage("resources//logoicon.png");
+	private Image img = UseImageFile.getImage("resources//logoicon.png");
 
-  private JLabel logoImgLabel;
+	private JLabel logoImgLabel;
 
-  private MainPanelButton signUpButton;
+	private MainPanelButton signUpButton;
 
-  private MainPanelButton loginButton;
+	private MainPanelButton loginButton;
 
-  public static MainFrame frame;
+	public static MainFrame frame;
 
+	public MainPanel(MainFrame frame) {
 
-  public MainPanel(MainFrame frame) {
+		MainPanel.frame = frame;
 
-    MainPanel.frame = frame;
+		setBackground(ColorSet.talkBackgroundColor);
+		setLayout(null);
 
-    setBackground(ColorSet.talkBackgroundColor);
-    setLayout(null);
+		showLogo();
 
-    showLogo();
+		moveSignUpPanel();
 
-    moveSignUpPanel();
+		moveLogoPanel();
+	}
 
-    moveLogoPanel();
-  }
+	private void showLogo() {
 
-  private void showLogo() {
+		logoImgLabel = new JLabel(new ImageIcon(img));
+		logoImgLabel.setBounds(95, 90, 200, 200);
+		add(logoImgLabel);
+	}
 
-    logoImgLabel = new JLabel(new ImageIcon(img));
-    logoImgLabel.setBounds(95, 90, 200, 200);
-    add(logoImgLabel);
-  }
+	private void moveSignUpPanel() {
 
-  private void moveSignUpPanel() {
+		signUpButton = new MainPanelButton(CommonWord.SIGN_UP_MEMBERSHIP.getText());
+		signUpButton.setBounds(30, 370, 330, 35);
+		signUpButton.setOpaque(true);
+		add(signUpButton);
+		signUpButton.addActionListener(new ActionListener() {
 
-    signUpButton = new MainPanelButton(CommonWord.SIGN_UP_MEMBERSHIP.getText());
-    signUpButton.setBounds(30, 370, 330, 35);
-    signUpButton.setOpaque(true);
-    add(signUpButton);
-    signUpButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
+				JoinMembershipPanel c = new JoinMembershipPanel();
+				MainPanel.frame.change(c);
 
-        JoinMembershipPanel c = new JoinMembershipPanel();
-        MainPanel.frame.change(c);
+			}
 
-      }
+		});
+	}
 
-    });
-  }
+	private void moveLogoPanel() {
 
-  private void moveLogoPanel() {
+		loginButton = new MainPanelButton(CommonWord.LOGIN.getText());
+		loginButton.setBounds(30, 420, 330, 35);
+		loginButton.setOpaque(true);
+		add(loginButton);
+		loginButton.addActionListener(new ActionListener() {
 
-    loginButton = new MainPanelButton(CommonWord.LOGIN.getText());
-    loginButton.setBounds(30, 420, 330, 35);
-    loginButton.setOpaque(true);
-    add(loginButton);
-    loginButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
+				LoginPanel loginPanel = new LoginPanel();
+				MainPanel.frame.change(loginPanel);
+			}
 
-        LoginPanel loginPanel = new LoginPanel();
-        MainPanel.frame.change(loginPanel);
-      }
-
-    });
-  }
+		});
+	}
 
 }

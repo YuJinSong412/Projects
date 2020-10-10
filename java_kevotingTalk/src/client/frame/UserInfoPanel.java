@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import util.ColorSet;
 import util.CommonPanel;
 
+@SuppressWarnings("serial")
 public abstract class UserInfoPanel extends CommonPanel {
 
   protected JLabel formTitleLabel;

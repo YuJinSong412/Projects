@@ -36,253 +36,243 @@ import server.userDB.UserDAO;
 import util.ColorSet;
 import util.UseImageFile;
 
+@SuppressWarnings("serial")
 public class ChatWindowPanel extends JPanel {
 
-  JTextArea textArea;
+	private String panelName;
 
-  JButton sendButton;
+	private JTextArea textArea;
 
-  static JTextArea textArea2;
+	private JButton sendButton;
 
-  static JTextPane jtp;
+	private JButton imgFileButton;
 
-  static Style style;
+	private static JTextPane jtp;
 
-  static StyleContext context;
+	private static StyledDocument document;
 
-  static StyledDocument document;
+	private Image img = UseImageFile.getImage("resources//folder.png");
 
-  // Image img = UseImageFile.getImage("resources\\picture.png");
-  Image img = UseImageFile.getImage("resources//folder.png");
+	public ChatWindowPanel(ImageIcon imageIcon, String friendName) {
 
+		panelName = friendName;
 
-  private String panelName;
-  
-  public ChatWindowPanel(ImageIcon imageIcon, String friendName) {
+		setBackground(ColorSet.talkBackgroundColor);
+		setLayout(null);
 
-	panelName = friendName;
-	  
-    setBackground(ColorSet.talkBackgroundColor);
-    setLayout(null);
+		showFriendInfo(imageIcon, friendName);
 
-    JLabel label = new JLabel(imageIcon);
-    label.setOpaque(true);
-    label.setText(friendName);
-    label.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-    label.setBounds(0, 0, 400, 80);
+		writeMessageArea();
 
+		showContentArea();
 
-    label.setBackground(Color.WHITE);
-    add(label);
+		imgFileButton = showImgFileButton();
+		add(imgFileButton);
+		imgFileButton.addActionListener(new ActionListener() {
 
-    textArea = new JTextArea(20, 20);
-    JScrollPane scroller = new JScrollPane(textArea);
-    scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-    scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    scroller.setBounds(0, 500, 321, 65);
-    add(scroller);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+				chooser.setFileFilter(filter);
 
-    JButton imgButton2 = new JButton(new ImageIcon(img));
-    imgButton2.setBackground(ColorSet.talkBackgroundColor);
-    Border emptyBorder2 = BorderFactory.createEmptyBorder();
-    imgButton2.setBorder(emptyBorder2);
-    imgButton2.setFocusPainted(false);
-    imgButton2.setBounds(0, 460, 60, 40);
+				int ret = chooser.showOpenDialog(null);
+				if (ret != JFileChooser.APPROVE_OPTION) {
+					JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.", "경고", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 
+				String filePath = chooser.getSelectedFile().getAbsolutePath();
+				textArea.setText(filePath);
 
-    add(imgButton2);
-    imgButton2.addActionListener(new ActionListener() {
+			}
 
-      @Override
-      public void actionPerformed(ActionEvent arg0) {
+		});
 
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter =
-            new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
-        chooser.setFileFilter(filter);
+		sendButton = showSendButton();
+		add(sendButton);
+		sendButton.addActionListener(new ActionListener() {
 
-        int ret = chooser.showOpenDialog(null);
-        if (ret != JFileChooser.APPROVE_OPTION) {
-          JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.", "경고", JOptionPane.WARNING_MESSAGE);
-          return;
-        }
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-        String filePath = chooser.getSelectedFile().getAbsolutePath();
-        textArea.setText(filePath);
+				String messageType = textArea.getText().contains("/Users/") ? "file" : "text";
 
-      }
+				Message message = new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType,
+						friendName);
 
-    });
+				UserDAO.clientSocket.send(message);
 
+				textArea.setText("");
+			}
 
-    context = new StyleContext();
-    document = new DefaultStyledDocument(context);
-    jtp = new JTextPane(document);
-    jtp.setBackground(ColorSet.talkBackgroundColor);
-    jtp.setEditable(false);
-    JScrollPane scroller2 = new JScrollPane(jtp);
-    scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-    scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    scroller2.setBounds(0, 80, 389, 380);
-    add(scroller2);
+		});
 
+	}
 
-    sendButton = new JButton("전송");
-    sendButton.setBackground(ColorSet.messageSendButtonColor);
-    sendButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-    sendButton.setFocusPainted(false);
-    sendButton.setBounds(320, 500, 68, 65);
-    add(sendButton);
-    sendButton.addActionListener(new ActionListener() {
+	private void showFriendInfo(ImageIcon imageIcon, String friendName) {
+		JLabel friendInfolabel = new JLabel(imageIcon);
+		friendInfolabel.setOpaque(true);
+		friendInfolabel.setText(friendName);
+		friendInfolabel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		friendInfolabel.setBounds(0, 0, 400, 80);
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
+		friendInfolabel.setBackground(Color.WHITE);
+		add(friendInfolabel);
+	}
 
-        String messageType = textArea.getText().contains("/Users/") ? "file" : "text";
+	private JButton showImgFileButton() {
+		JButton imgFileButton = new JButton(new ImageIcon(img));
+		imgFileButton.setBackground(ColorSet.talkBackgroundColor);
+		Border emptyBorder2 = BorderFactory.createEmptyBorder();
+		imgFileButton.setBorder(emptyBorder2);
+		imgFileButton.setFocusPainted(false);
+		imgFileButton.setBounds(0, 460, 60, 40);
 
-        Message message =
-            new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType, friendName);
+		return imgFileButton;
 
-        UserDAO.clientSocket.send(message);
+	}
 
-        textArea.setText("");
-      }
+	private JButton showSendButton() {
+		JButton sendButton = new JButton("전송");
+		sendButton.setBackground(ColorSet.messageSendButtonColor);
+		sendButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		sendButton.setFocusPainted(false);
+		sendButton.setBounds(320, 500, 68, 65);
 
-    });
+		return sendButton;
+	}
 
-  }
+	private void writeMessageArea() {
+		textArea = new JTextArea(20, 20);
+		JScrollPane scroller = new JScrollPane(textArea);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scroller.setBounds(0, 500, 321, 65);
+		add(scroller);
+	}
 
+	private void showContentArea() {
 
+		StyleContext context = new StyleContext();
+		document = new DefaultStyledDocument(context);
+		jtp = new JTextPane(document);
+		jtp.setBackground(ColorSet.talkBackgroundColor);
+		jtp.setEditable(false);
+		JScrollPane scroller2 = new JScrollPane(jtp);
+		scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scroller2.setBounds(0, 80, 389, 380);
+		add(scroller2);
+	}
 
-public static void displayText(Message message) { 
+	public static void displayText(Message message) {
 
-//	    if (UserDAO.username.equals(message.getSendUserName())) {
-//	        ChatWindowPanel.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm"))
-//	            + "  <" + message.getSendUserName() + ">");
-//	        if (message.getMessageType().equals("file")) {
-//	          ChatWindowPanel.imgRightPrint(message.getSendComment());
-//	        } else {
-//	          ChatWindowPanel.rightPrint(message.getSendComment());
-//	        }
-//	      } else {
-//	        ChatWindowPanel.leftPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm"))
-//	            + "  <" + message.getSendUserName() + ">");
-//
-//	        if (message.getMessageType().equals("file")) {
-//	          ChatWindowPanel.imgLeftPrint(message.getSendComment());
-//	        } else {
-//	          ChatWindowPanel.leftPrint(message.getSendComment());
-//	        }
-//	      }
-	    
-	  //송유진상단바 이름이랑 sendUserName이 같으면 또 된다.
-	  
-	  if (UserDAO.username.equals(message.getSendUserName())) {
-	        ChatWindowPanel.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm"))
-	            + "  <" + message.getSendUserName() + ">");
-	        if (message.getMessageType().equals("file")) {
-	          ChatWindowPanel.imgRightPrint(message.getSendComment());
-	        } else {
-	          ChatWindowPanel.rightPrint(message.getSendComment());
-	        }
-	      }
-	  
-	  
-	  for(ChatWindowPanel chatName : FriendListPanel.chatPanelName) {
-		  if(chatName.panelName.equals(message.getSendUserName())) {
-			  
-			        ChatWindowPanel.leftPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm"))
-			            + "  <" + message.getSendUserName() + ">");
+		// 송유진상단바 이름이랑 sendUserName이 같으면 또 된다.
 
-			        if (message.getMessageType().equals("file")) {
-			          ChatWindowPanel.imgLeftPrint(message.getSendComment());
-			        } else {
-			          ChatWindowPanel.leftPrint(message.getSendComment());
-			        }
-			      
-		  }
-	  }
+		if (UserDAO.username.equals(message.getSendUserName())) {
+			rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
+					+ message.getSendUserName() + ">");
+			if (message.getMessageType().equals("file")) {
+				imgRightPrint(message.getSendComment());
+			} else {
+				rightPrint(message.getSendComment());
+			}
+		}
 
-  }
+		for (ChatWindowPanel chatName : FriendListPanel.chatPanelName) {
+			if (chatName.panelName.equals(message.getSendUserName())) {
 
+				leftPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
+						+ message.getSendUserName() + ">");
 
-  public void paint(Graphics g) {
+				if (message.getMessageType().equals("file")) {
+					imgLeftPrint(message.getSendComment());
+				} else {
+					leftPrint(message.getSendComment());
+				}
 
-    super.paint(g);
-    Graphics2D g2 = (Graphics2D) g;
-    Line2D lin = new Line2D.Float(0, 81, 400, 81);
-    g2.draw(lin);
+			}
+		}
 
-    Graphics2D g3 = (Graphics2D) g;
-    Line2D lin2 = new Line2D.Float(0, 458, 400, 458);
-    g3.draw(lin2);
-  }
+	}
 
-  private static void imgRightPrint(String sendComment) {
+	public void paint(Graphics g) {
 
-    Image imgFile = UseImageFile.getImage(sendComment);
-    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+		super.paint(g);
+		Graphics2D g2 = (Graphics2D) g;
+		Line2D lin = new Line2D.Float(0, 81, 400, 81);
+		g2.draw(lin);
 
-    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-    Style style2 = doc2.addStyle("StyleName", null);
-    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-    try {
-      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-    } catch (BadLocationException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		Graphics2D g3 = (Graphics2D) g;
+		Line2D lin2 = new Line2D.Float(0, 458, 400, 458);
+		g3.draw(lin2);
+	}
 
-  private static void imgLeftPrint(String sendComment) {
+	private static void imgRightPrint(String sendComment) {
 
-    Image imgFile = UseImageFile.getImage(sendComment);
-    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+		Image imgFile = UseImageFile.getImage(sendComment);
+		Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
 
-    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-    Style style2 = doc2.addStyle("StyleName", null);
-    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-    try {
-      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-    } catch (BadLocationException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+		Style style2 = doc2.addStyle("StyleName", null);
+		StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+		try {
+			doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	}
 
-  private static void rightPrint(String string) {
+	private static void imgLeftPrint(String sendComment) {
 
-    try {
+		Image imgFile = UseImageFile.getImage(sendComment);
+		Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
 
-      SimpleAttributeSet right = new SimpleAttributeSet();
-      StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
-      document.setParagraphAttributes(document.getLength(), document.getLength() + 1, right, true);
-      document.insertString(document.getLength(), string + "\n", right);
+		StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+		Style style2 = doc2.addStyle("StyleName", null);
+		StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+		try {
+			doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	}
 
-    } catch (BadLocationException e) {
-      e.printStackTrace();
-    }
-  }
+	private static void rightPrint(String string) {
 
-  private static void leftPrint(String string) {
+		try {
 
-    try {
-      SimpleAttributeSet left = new SimpleAttributeSet();
-      StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
-      document.setParagraphAttributes(document.getLength(), document.getLength() + 1, left, true);
-      document.insertString(document.getLength(), string + " \n", left);
-    } catch (BadLocationException e) {
-      e.printStackTrace();
-    }
-  }
+			SimpleAttributeSet right = new SimpleAttributeSet();
+			StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+			document.setParagraphAttributes(document.getLength(), document.getLength() + 1, right, true);
+			document.insertString(document.getLength(), string + "\n", right);
+
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void leftPrint(String string) {
+
+		try {
+			SimpleAttributeSet left = new SimpleAttributeSet();
+			StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+			document.setParagraphAttributes(document.getLength(), document.getLength() + 1, left, true);
+			document.insertString(document.getLength(), string + " \n", left);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
-
 /*
- * Java Swing 객체중에 하나인 JLable의 경우 배경색을 설정하면 효과가 적용되지 않는다. 이는 JLabel의 배경색이 기본적으로 투명이기 때문이다.
+ * Java Swing 객체중에 하나인 JLable의 경우 배경색을 설정하면 효과가 적용되지 않는다. 이는 JLabel의 배경색이 기본적으로
+ * 투명이기 때문이다.
  * 
- * jlabel.setOpaque(true);//Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다. jlabel.setBackgroud(Color.pink);
+ * jlabel.setOpaque(true);//Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+ * jlabel.setBackgroud(Color.pink);
  * 
  * 위와 같이 배경색 설정 이전에 Opaque값을 true로 설정해주어야 한다. [출처] JLabel의 배경색 설정하기|작성자 독행소년
  * 

@@ -3,6 +3,7 @@ package server.dataCommunication;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+@SuppressWarnings("serial")
 public class Message implements Serializable {
 
   private String sendUserName;

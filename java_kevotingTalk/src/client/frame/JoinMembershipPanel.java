@@ -11,8 +11,9 @@ import javax.swing.JTextField;
 
 import server.userDB.User;
 import server.userDB.UserDAO;
-import util.CommonWord;
+import util.enumPackage.CommonWord;
 
+@SuppressWarnings("serial")
 public class JoinMembershipPanel extends UserInfoPanel {
 
   private final String SIGN_UP = "가입하기";

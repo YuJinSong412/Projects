@@ -17,81 +17,79 @@ import util.ColorSet;
 import util.UseImageFile;
 import util.UserProfileButton;
 
+@SuppressWarnings("serial")
 public class FriendListPanel extends JPanel {
 
-  private ArrayList<String> friends; // 친구들 이름 저장
+	private ArrayList<String> friends; // 친구들 이름 저장
 
-  public static ArrayList<JButton> friendButtons = new ArrayList<JButton>(); // 친구들 정보 버튼 저장
+	private ArrayList<ImageIcon> friendIcons = new ArrayList<ImageIcon>(); // 친구들 프로필 이미지 저장
 
-  private ArrayList<ImageIcon> friendIcons = new ArrayList<ImageIcon>(); // 친구들 프로필 이미지 저장
+	public static ArrayList<JButton> friendButtons = new ArrayList<JButton>(); // 친구들 정보 버튼 저장
 
-  public static ArrayList<ChatWindowPanel> chatPanelName = new ArrayList<ChatWindowPanel>(); // 각 채팅창 저장
-  
-  //public static ArrayList<String> chatFrameName = new ArrayList<String>(); //각 채팅창 주인 저장. 이름만 저장.
-  
-  private final int FRIEND_MAX = 8;
+	public static ArrayList<ChatWindowPanel> chatPanelName = new ArrayList<ChatWindowPanel>(); // 각 채팅창 저장
 
-  private final int FRIEND_MIN = 1;
+	private final int FRIEND_PROFILE_IMG_MAX = 8;
 
-  public FriendListPanel() {
+	private final int FRIEND_PROFILE_IMG_MIN = 1;
 
-    setBackground(ColorSet.talkBackgroundColor);
+	public FriendListPanel() {
 
-    UserDAO userDAO = new UserDAO();
-    friends = userDAO.friendList();
-    int friendNum = friends.size();
+		setBackground(ColorSet.talkBackgroundColor);
 
-    setLayout(new GridLayout(friendNum, 0));
+		UserDAO userDAO = new UserDAO();
+		friends = userDAO.friendList();
+		int friendNum = friends.size();
 
-    for (int index = 0; index < friendNum; index++) {
-      Random rand = new Random();
-      int randomNum = rand.nextInt((FRIEND_MAX - FRIEND_MIN) + FRIEND_MIN) + 1;
-      Image img = UseImageFile.getImage("resources//friendProfile//profile" + randomNum + ".png");
+		setLayout(new GridLayout(friendNum, 0));
 
-      ImageIcon imageIcon = new ImageIcon(img);
-      UserProfileButton userprofileButton = new UserProfileButton(imageIcon); // new ImageIcon(img)
-      userprofileButton.setText(friends.get(index));
-      add(userprofileButton);
+		for (int index = 0; index < friendNum; index++) {
+			Random rand = new Random();
+			int randomNum = rand.nextInt((FRIEND_PROFILE_IMG_MAX - FRIEND_PROFILE_IMG_MIN) + FRIEND_PROFILE_IMG_MIN)
+					+ 1;
+			Image img = UseImageFile.getImage("resources//friendProfile//profile" + randomNum + ".png");
 
-      friendIcons.add(imageIcon);
-      friendButtons.add(userprofileButton);
-    }
+			ImageIcon imageIcon = new ImageIcon(img);
+			UserProfileButton userprofileButton = new UserProfileButton(imageIcon); 
+			userprofileButton.setText(friends.get(index));
+			add(userprofileButton);
 
-    for (int i = 0; i < friendNum; i++) {
-      friendButtons.get(i).putClientProperty("page", i);
+			friendIcons.add(imageIcon);
+			friendButtons.add(userprofileButton);
+		}
 
-      friendButtons.get(i).addActionListener(new ActionListener() {
+		for (int i = 0; i < friendNum; i++) {
+			friendButtons.get(i).putClientProperty("page", i);
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+			friendButtons.get(i).addActionListener(new ActionListener() {
 
-          int idx = (Integer) ((JButton) e.getSource()).getClientProperty("page");
+				@Override
+				public void actionPerformed(ActionEvent e) {
 
-          if (friendButtons.get(idx).getText().contains("대화 중..")) {
-            // 작동x
-          } else {
-            friendButtons.get(idx).setText(friendButtons.get(idx).getText() + "       대화 중..");
+					int idx = (Integer) ((JButton) e.getSource()).getClientProperty("page");
 
-            String messageType = "text";
-            
-            Message message =
-                new Message(UserDAO.username, UserDAO.username+"님이 입장하였습니다.", LocalTime.now(), messageType, friends.get(idx));
-            
-            ChatWindowPanel c = new ChatWindowPanel(friendIcons.get(idx), friends.get(idx));
-            ChatWindowFrame cw = new ChatWindowFrame(c, friends.get(idx));
-            
-            chatPanelName.add(c);
-        //    chatFrameName.add(cw.getChatUser());
-            UserDAO.clientSocket.send(message);
-            
+					if (friendButtons.get(idx).getText().contains("대화 중..")) {
+						// 작동x
+					} else {
+						friendButtons.get(idx).setText(friendButtons.get(idx).getText() + "       대화 중..");
 
-          }
+						String messageType = "text";
 
-        }
+						Message message = new Message(UserDAO.username, UserDAO.username + "님이 입장하였습니다.",
+								LocalTime.now(), messageType, friends.get(idx));
 
-      });
-    }
+						ChatWindowPanel c = new ChatWindowPanel(friendIcons.get(idx), friends.get(idx));
+						new ChatWindowFrame(c, friends.get(idx));
 
-  }
+						chatPanelName.add(c);
+						UserDAO.clientSocket.send(message);
+
+					}
+
+				}
+
+			});
+		}
+
+	}
 
 }

@@ -1,6 +1,5 @@
 package util;
 
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -8,29 +7,26 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 
+@SuppressWarnings("serial")
 public class MainPanelButton extends JButton {
 
-  Border emptyBorder;
+	public MainPanelButton(String buttonTitle) {
 
-  public MainPanelButton(String buttonTitle) {
+		setName(buttonTitle);
+		setText(buttonTitle);
+		setBackground(Color.WHITE);
+		setFocusPainted(false);
+		setOpaque(true);
+		setFont(new Font("맑은 고딕", Font.BOLD, 18));
 
-    setName(buttonTitle);
-    setText(buttonTitle);
-    setBackground(Color.WHITE);
-    setFocusPainted(false);
-    setOpaque(true);
-    setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		Border emptyBorder = BorderFactory.createEmptyBorder();
+		setBorder(emptyBorder);
+	}
 
-    emptyBorder = BorderFactory.createEmptyBorder();
-    setBorder(emptyBorder);
-  }
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
 
-  @Override
-  public void setBounds(int x, int y, int width, int height) {
-
-    super.setBounds(x, y, width, height);
-  }
-
+		super.setBounds(x, y, width, height);
+	}
 
 }
-

@@ -3,29 +3,29 @@ package client.frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
-  private MainPanel mainPanel;
+	private MainPanel mainPanel;
 
-  public MainFrame() {
+	public MainFrame() {
 
-    setTitle("KevotingTalk");
-    setBounds(800, 250, 400, 600);
+		setTitle("KevotingTalk");
+		setBounds(800, 250, 400, 600);
 
-    mainPanel = new MainPanel(this);
-    getContentPane().add(mainPanel);
+		mainPanel = new MainPanel(this);
+		getContentPane().add(mainPanel);
 
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setVisible(true);
-  }
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
 
-  public void change(JPanel panelName) {
+	public void change(JPanel panelName) {
 
-    getContentPane().removeAll();
-    getContentPane().add(panelName);
-    revalidate();
-    repaint();
-  }
-
+		getContentPane().removeAll();
+		getContentPane().add(panelName);
+		revalidate();
+		repaint();
+	}
 
 }
