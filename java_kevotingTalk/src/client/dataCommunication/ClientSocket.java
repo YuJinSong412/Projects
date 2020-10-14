@@ -26,11 +26,15 @@ public class ClientSocket {
 
         try {
           socket = new Socket();
-          socket.connect(new InetSocketAddress("localhost", 5027));
+          socket.connect(new InetSocketAddress("localhost", 5000));
           System.out.println("연결 요청");
+          setName(UserDAO.username);
+          System.out.println(getName());
           // -> socket 생성 및 연결 요청
         } catch (IOException e) {
           System.out.println("서버 통신 안됨");
+          System.out.println(e.getMessage());
+         e.printStackTrace();
           if (!socket.isClosed()) {
             stopClient();
           }
@@ -131,8 +135,6 @@ public class ClientSocket {
           System.out.println("노노 서버로 통신 안됨");
           e.printStackTrace();
         }
-
-
       }
     };
     thread.start();

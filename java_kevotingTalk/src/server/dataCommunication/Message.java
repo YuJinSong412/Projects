@@ -16,7 +16,7 @@ public class Message implements Serializable {
 
   private String receiveFriendName;
 
-  public Message(String sendUserName, String sendComment, LocalTime sendTime, String messageType, String receiveFriendName) {  //, String receiveFriendName
+  public Message(String sendUserName, String sendComment, LocalTime sendTime, String messageType, String receiveFriendName) { 
 
     this.sendUserName = sendUserName;
     this.sendComment = sendComment;

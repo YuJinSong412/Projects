@@ -94,4 +94,3 @@ public class FriendListPanel extends JPanel {
 	}
 
 }
-//처음에는 

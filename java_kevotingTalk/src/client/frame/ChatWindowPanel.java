@@ -98,11 +98,16 @@ public class ChatWindowPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String messageType = textArea.getText().contains("C:\\") ? "file" : "text";
+				String messageType = null;
+		        if (textArea.getText().contains(".jpg") || textArea.getText().contains(".png")
+		            || textArea.getText().contains(".JPG") || textArea.getText().contains(".PNG")) {
+		          messageType = "file";
+		        } else {
+		          messageType = "text";
+		        }
+
 				Message message = null;
-				if (textArea.getText() == null) {
-					System.out.println("텍스트 널 값이다.");
-				} else if (messageType.equals("file")) {
+				if (messageType.equals("file")) {
 					message = new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType,
 							friendName);
 				} else {
@@ -181,17 +186,26 @@ public class ChatWindowPanel extends JPanel {
 
 	public static void displayComment(Message message) {
 
-		// 송유진상단바 이름이랑 sendUserName이 같으면 또 된다.
+		for(ChatWindowPanel chatName : IndexPanel.chatPanelName) {
+			if(UserDAO.username.equals(message.getSendUserName())) {
+				chatName.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + " <" + message.getSendUserName() + ">");
+				if (message.getMessageType().equals("file")) {
+					chatName.imgRightPrint(message.getSendComment());
+				} else {
+					chatName.rightPrint(message.getSendComment());
+				}
+			}
+		}
 
-		for (ChatWindowPanel chat : FriendListPanel.chatPanelName) {
+		for (ChatWindowPanel chatName : FriendListPanel.chatPanelName) {
 			if (UserDAO.username.equals(message.getSendUserName())
-					&& chat.panelName.equals(message.getReceiveFriendName())) {
-				chat.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
+					&& chatName.panelName.equals(message.getReceiveFriendName())) {
+				chatName.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
 						+ message.getSendUserName() + ">");
 				if (message.getMessageType().equals("file")) {
-					// chatimgRightPrint(message.getSendComment());
+					chatName.imgRightPrint(message.getSendComment());
 				} else {
-					chat.rightPrint(message.getSendComment());
+					chatName.rightPrint(message.getSendComment());
 				}
 			}
 		}
@@ -203,7 +217,7 @@ public class ChatWindowPanel extends JPanel {
 						+ message.getSendUserName() + ">");
 
 				if (message.getMessageType().equals("file")) {
-					// imgLeftPrint(message.getSendComment());
+					 chatName.imgLeftPrint(message.getSendComment());
 				} else {
 					chatName.leftPrint(message.getSendComment());
 				}
@@ -225,69 +239,37 @@ public class ChatWindowPanel extends JPanel {
 		g3.draw(lin2);
 	}
 
-	// private static void imgRightPrint(String sendComment) {
-	//
-//		    byte[] loadFile = getLoadFile(sendComment);
-	//
-	//
-//		    Image imgFile = UseImageFile.getImage(sendComment);
-//		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-	//
-//		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-//		    Style style2 = doc2.addStyle("StyleName", null);
-//		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-//		    try {
-//		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-//		    } catch (BadLocationException e) {
-//		      e.printStackTrace();
-//		    }
-	// }
+	 private void imgRightPrint(String sendComment) {
+	
+		    Image imgFile = UseImageFile.getImage(sendComment);
+		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+	
+		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+		    Style style2 = doc2.addStyle("StyleName", null);
+		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+		    try {
+		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+		    } catch (BadLocationException e) {
+		      e.printStackTrace();
+		    }
+	 }
 
-//	private static byte[] getLoadFile(String filePath) {
-//
-//		File file = new File(filePath);
-//		byte[] loadFile = new byte[(int) file.length()];
-//		BufferedInputStream bufferedInputStream;
-//		try {
-//			bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-//			bufferedInputStream.read(loadFile, 0, loadFile.length);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return loadFile;
-//
-//	}
 
-	// private static void imgLeftPrint(String sendComment) {
-	//
-//		    Image imgFile = UseImageFile.getImage(sendComment);
-//		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-	//
-//		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-//		    Style style2 = doc2.addStyle("StyleName", null);
-//		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-//		    try {
-//		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-//		    } catch (BadLocationException e) {
-//		      e.printStackTrace();
-//		    }
-	// }
-	//
-	// private static void imgLeftPrint(File sendComment) {
-	//
-	// Image imgFile = UseImageFile.getImage(sendComment);
-	// Image imgResize = imgFile.getScaledInstance(200, 200,
-	// java.awt.Image.SCALE_SMOOTH);
-	//
-	// StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-	// Style style2 = doc2.addStyle("StyleName", null);
-	// StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-	// try {
-	// doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-	// } catch (BadLocationException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	 private void imgLeftPrint(String sendComment) {
+	
+		    Image imgFile = UseImageFile.getImage(sendComment);
+		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+	
+		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+		    Style style2 = doc2.addStyle("StyleName", null);
+		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+		    try {
+		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+		    } catch (BadLocationException e) {
+		      e.printStackTrace();
+		    }
+	 }
+	
 
 	private void rightPrint(String string) {
 
