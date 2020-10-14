@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import enumpackage.CommonWord;
+import enums.CommonWord;
 import server.datacommunication.Message;
 import server.userdb.UserDAO;
 import util.CommonPanel;

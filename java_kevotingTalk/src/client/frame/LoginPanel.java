@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import enumpackage.CommonWord;
+import enums.CommonWord;
 import server.userdb.UserDAO;
 import util.UserInfoPanel;
 

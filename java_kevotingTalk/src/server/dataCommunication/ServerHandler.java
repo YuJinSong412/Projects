@@ -12,16 +12,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ServerHandler {
 
-	  ExecutorService executorService;
-
-	  ServerSocket serverSocket;
+	  ExecutorService executorService;					//스레드풀인 ExecutorService 선
+	  
+	  ServerSocket serverSocket;						// 클라이언트 연결 수락 
 
 	  List<Client> connections = new Vector<Client>(); // 연결되어있는 클라이언트들
 
@@ -29,12 +28,17 @@ public class ServerHandler {
 	  public void startServer() {
 
 	    ExecutorService threadPool =
-	        new ThreadPoolExecutor(10, 100, 120L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
+	        new ThreadPoolExecutor(10,		//코어 스레드 개수 
+	        		100, 					//최대 스레드 개수 
+	        		120L, 					//놀고 있는 시간 
+	        		TimeUnit.SECONDS, 		//놀고 있는 시간 단위 
+	        		new SynchronousQueue<Runnable>()	//작업 
+	        		);	//초기 스레드 개수 0개,
 
 	    executorService = threadPool;
 	    
 	    try {
-	      serverSocket = new ServerSocket();
+	      serverSocket = new ServerSocket();  
 	      serverSocket.bind(new InetSocketAddress("localhost", 5000));
 	      System.out.println("서버 연결 기다림");
 	      // -> serverSocket 생성 및 포트 바인딩
@@ -55,16 +59,16 @@ public class ServerHandler {
 
 	        while (true) {
 	          try {
-	            Socket socket = serverSocket.accept();
+	            Socket socket = serverSocket.accept();		//클라이언트 연결 수락
 	            System.out.println("연결 수락: " + socket.getRemoteSocketAddress() + ": "
 	                + Thread.currentThread().getName());
 
-	            Client client = new Client(socket);
+	            Client client = new Client(socket);		//클라이언트 객체에 저장. 
 	            connections.add(client);
 	            System.out.println("연결 개수: " + connections.size());
 
 	          } catch (IOException e) {
-	            if (!serverSocket.isClosed()) {
+	            if (!serverSocket.isClosed()) {	//serverSocket이 닫혀있지 않을 경우 
 	              stopServer();
 	            }
 	            break;
@@ -75,23 +79,22 @@ public class ServerHandler {
 	      }
 
 	    };
-	    executorService.submit(runnable);
+	    executorService.submit(runnable);	//스레드풀에서 처리.
 	  }
 
 	  public void stopServer() {
 
 	    try {
-	      Iterator<Client> iterator = connections.iterator();
+	      Iterator<Client> iterator = connections.iterator();	//모든 socket 닫기.
 	      while (iterator.hasNext()) {
-	        System.out.println("뭐");
 	        Client client = iterator.next();
 	        client.socket.close();
 	        iterator.remove();
 	      }
-	      if (serverSocket != null && !serverSocket.isClosed()) {
+	      if (serverSocket != null && !serverSocket.isClosed()) {	//ServerSocket 닫기.
 	        serverSocket.close();
 	      }
-	      if (executorService != null && !executorService.isShutdown()) {
+	      if (executorService != null && !executorService.isShutdown()) {	//ExecutorService 종료.
 	        executorService.shutdown();
 	      }
 	    } catch (Exception e) {
@@ -123,22 +126,23 @@ public class ServerHandler {
 
 	          try {
 	            while (true) {
-	              InputStream inputStream = socket.getInputStream();
+	              InputStream inputStream = socket.getInputStream();	//입력 스트림 얻기.
 
-	              int readByteCount = inputStream.read(byteArr); // 데이터 받기
+	              int readByteCount = inputStream.read(byteArr); // 데이터 받기, 배열에 저장, 바이트 수 리턴.
 
+	              //더 이상 입력 스트림으로부터 바이트 읽을 수 없다면 -1 리턴. 
 	              if (readByteCount == -1) {
 	                throw new IOException();
 	              }
 
-	              Message ms = toObject(byteArr, Message.class);
+	              Message ms = toObject(byteArr, Message.class);		//역직렬	
 	              System.out.println("요청처리: " + socket.getRemoteSocketAddress() + ": "
 	                  + Thread.currentThread().getName());
 
 	              userName = ms.getSendUserName();
 	              System.out.println(userName + "qq");
 
-	              send(byteArr);
+	              send(byteArr);		//본인한테 보
 
 	              for (Client client : connections) { // 모든 클라이언트에게 보냄
 	                System.out.println(client.userName + "ss" + ms.getReceiveFriendName());

@@ -2,7 +2,7 @@ package client.frame;
 
 import javax.swing.JPanel;
 
-import enumpackage.CommonWord;
+import enums.CommonWord;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;

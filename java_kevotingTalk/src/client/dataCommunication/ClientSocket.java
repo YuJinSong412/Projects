@@ -19,14 +19,14 @@ public class ClientSocket {
 
   public void startClient() {
 
-    Thread thread = new Thread() {
+    Thread thread = new Thread() {	//스레드 생성 
 
       @Override
       public void run() {
 
         try {
-          socket = new Socket();
-          socket.connect(new InetSocketAddress("localhost", 5000));
+          socket = new Socket();	//소켓 생성
+          socket.connect(new InetSocketAddress("localhost", 5000));		//연결 요청 
           System.out.println("연결 요청");
           setName(UserDAO.username);
           System.out.println(getName());
@@ -63,11 +63,8 @@ public class ClientSocket {
 
     while (true) {
       
-      //수신 버퍼의 최대 사이즈 지정
-      int maxBufferSize = 1024;
-      
       //버퍼 생성
-      byte[] recvBuffer = new byte[maxBufferSize];
+      byte[] recvBuffer = new byte[1024];
       
       //서버로부터 받기 위한 입력 스트림 뚫음
       InputStream inputStream;
@@ -102,8 +99,7 @@ public class ClientSocket {
     return class1.cast(obj);
   }
 
-  // 사용자가 메시지 입력 후 전송 버튼 클릭하면 메시지를 매개값으로 호출, 서버로 메시지를 보내는 역할
-  // 채팅방 들어갈 때도 해당
+  //서버로 메시지를 보내는 역할 
   public void send(Message messageInfo) { 
 
     Thread thread = new Thread() {
@@ -113,26 +109,26 @@ public class ClientSocket {
 
         //객체를 byte array로 변환
         byte[] bytes = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();	//바이트 배열에 데이터를 입출력하는데 사용되는 스트림. 데이터를 임시로 바이트 배열에 담아서 변환 등 작업 사용 
         try {
-          ObjectOutputStream oos = new ObjectOutputStream(bos);
-          oos.writeObject(messageInfo);
-          oos.flush();
+          ObjectOutputStream oos = new ObjectOutputStream(bos);		//객체를 직렬화. 
+          oos.writeObject(messageInfo);								//객체를 직렬화하기 위해 메소드 사용 
+          oos.flush();												//버퍼에 잔류하는 모든 바이트 출력 
           oos.close();
           bos.close();
-          bytes = bos.toByteArray();
+          bytes = bos.toByteArray();							//byteArray로 변환 
         } catch (IOException e) {
         }
         
         // message객체를 byte로 변환 후 소켓을 통해 보냄
         try {
           byte[] data = bytes;
-          OutputStream outputStream = socket.getOutputStream();
+          OutputStream outputStream = socket.getOutputStream();		//출력 스트림 얻기.
           outputStream.write(data);
           outputStream.flush();
-          System.out.println("서버로 보내기 완료완료!");
+          System.out.println("서버로 보내기 완료!");
         } catch (IOException e) {
-          System.out.println("노노 서버로 통신 안됨");
+          System.out.println("서버로 통신 안됨");
           e.printStackTrace();
         }
       }
