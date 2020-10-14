@@ -1,4 +1,4 @@
-package client.frame;
+package util;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,10 +9,9 @@ import java.awt.geom.Line2D;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import util.ColorSet;
-import util.CommonPanel;
 
 @SuppressWarnings("serial")
+
 public abstract class UserInfoPanel extends CommonPanel {
 
   protected JLabel formTitleLabel;
@@ -38,6 +37,8 @@ public abstract class UserInfoPanel extends CommonPanel {
     formButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
     formButton.setForeground(Color.WHITE);
     formButton.setBackground(ColorSet.signUpButtonColor);
+    formButton.setOpaque(true);
+    formButton.setBorderPainted(false);
     formButton.setBounds(100, 480, 180, 40);
     add(formButton);
 

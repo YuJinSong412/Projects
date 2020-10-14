@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import client.frame.FriendListPanel;
 import client.frame.IndexPanel;
-import server.userDB.UserDAO;
+import server.userdb.UserDAO;
 
 public class JFrameWindowClosingEventHandler extends WindowAdapter {
 
@@ -22,7 +22,6 @@ public class JFrameWindowClosingEventHandler extends WindowAdapter {
 	public void windowClosing(WindowEvent e) {
 		JFrame frame = (JFrame) e.getWindow();
 		frame.dispose();
-		System.out.println("sd");
 
 		// 본인 채팅방일때
 		if (UserDAO.username.equals(frameName)) {

@@ -14,12 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import server.dataCommunication.Message;
-import server.userDB.UserDAO;
+import enumpackage.CommonWord;
+import server.datacommunication.Message;
+import server.userdb.UserDAO;
 import util.CommonPanel;
 import util.UseImageFile;
 import util.UserProfileButton;
-import util.enumPackage.CommonWord;
 
 @SuppressWarnings("serial")
 public class IndexPanel extends CommonPanel {

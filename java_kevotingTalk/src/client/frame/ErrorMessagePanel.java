@@ -53,6 +53,8 @@ public class ErrorMessagePanel extends CommonPanel {
 		backButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		backButton.setForeground(Color.WHITE);
 		backButton.setBackground(ColorSet.BackButtonColor);
+		backButton.setOpaque(true);
+		backButton.setBorderPainted(false);
 		backButton.setBounds(100, 480, 180, 40);
 		add(backButton);
 

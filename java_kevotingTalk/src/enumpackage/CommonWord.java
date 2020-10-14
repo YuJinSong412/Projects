@@ -1,4 +1,4 @@
-package util.enumPackage;
+package enumpackage;
 
 public enum CommonWord {
 	SIGN_UP_MEMBERSHIP("회원가입", 0), LOGIN("로그인", 1), NAME("이름", 2), EMAIL("이메일", 3), PASSWORD("비밀번호", 4),

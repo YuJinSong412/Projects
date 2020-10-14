@@ -1,4 +1,4 @@
-package server.dataCommunication;
+package server.datacommunication;
 
 import java.io.Serializable;
 import java.time.LocalTime;

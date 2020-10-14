@@ -1,4 +1,4 @@
-package server.userDB;
+package server.userdb;
 
 
 public class User {

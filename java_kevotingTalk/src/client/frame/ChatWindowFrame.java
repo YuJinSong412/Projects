@@ -3,7 +3,7 @@ package client.frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import server.userDB.UserDAO;
+import server.userdb.UserDAO;
 import util.JFrameWindowClosingEventHandler;
 
 @SuppressWarnings("serial")
@@ -16,7 +16,7 @@ public class ChatWindowFrame extends JFrame {
 		this.frameName = frameName;
 
 		setTitle(UserDAO.username + "의 Chatting");
-		setBounds(1200, 250, 400, 600);
+		setBounds(1200, 250, 390, 590);
 
 		getContentPane().add(panel);
 

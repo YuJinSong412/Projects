@@ -1,6 +1,9 @@
 package client.frame;
 
 import javax.swing.JPanel;
+
+import enumpackage.CommonWord;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +13,6 @@ import javax.swing.JLabel;
 import util.ColorSet;
 import util.MainPanelButton;
 import util.UseImageFile;
-import util.enumPackage.CommonWord;
 
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel {

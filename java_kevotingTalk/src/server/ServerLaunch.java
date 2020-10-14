@@ -1,6 +1,6 @@
 package server;
 
-import server.dataCommunication.ServerHandler;
+import server.datacommunication.ServerHandler;
 
 public class ServerLaunch {
 

@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
+import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
@@ -31,8 +32,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import server.dataCommunication.Message;
-import server.userDB.UserDAO;
+import server.datacommunication.Message;
+import server.userdb.UserDAO;
 import util.ColorSet;
 import util.UseImageFile;
 
@@ -47,9 +48,9 @@ public class ChatWindowPanel extends JPanel {
 
 	private JButton imgFileButton;
 
-	private static JTextPane jtp;
+	private JTextPane jtp;
 
-	private static StyledDocument document;
+	private StyledDocument document;
 
 	private Image img = UseImageFile.getImage("resources//folder.png");
 
@@ -83,8 +84,8 @@ public class ChatWindowPanel extends JPanel {
 					return;
 				}
 
-				String filePath = chooser.getSelectedFile().getAbsolutePath();
-				textArea.setText(filePath);
+				File file = chooser.getSelectedFile();
+				textArea.setText(file.toString());
 
 			}
 
@@ -97,10 +98,17 @@ public class ChatWindowPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String messageType = textArea.getText().contains("/Users/") ? "file" : "text";
-
-				Message message = new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType,
-						friendName);
+				String messageType = textArea.getText().contains("C:\\") ? "file" : "text";
+				Message message = null;
+				if (textArea.getText() == null) {
+					System.out.println("텍스트 널 값이다.");
+				} else if (messageType.equals("file")) {
+					message = new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType,
+							friendName);
+				} else {
+					message = new Message(UserDAO.username, textArea.getText(), LocalTime.now(), messageType,
+							friendName);
+				}
 
 				UserDAO.clientSocket.send(message);
 
@@ -112,6 +120,7 @@ public class ChatWindowPanel extends JPanel {
 	}
 
 	private void showFriendInfo(ImageIcon imageIcon, String friendName) {
+
 		JLabel friendInfolabel = new JLabel(imageIcon);
 		friendInfolabel.setOpaque(true);
 		friendInfolabel.setText(friendName);
@@ -123,6 +132,7 @@ public class ChatWindowPanel extends JPanel {
 	}
 
 	private JButton showImgFileButton() {
+
 		JButton imgFileButton = new JButton(new ImageIcon(img));
 		imgFileButton.setBackground(ColorSet.talkBackgroundColor);
 		Border emptyBorder2 = BorderFactory.createEmptyBorder();
@@ -135,6 +145,7 @@ public class ChatWindowPanel extends JPanel {
 	}
 
 	private JButton showSendButton() {
+
 		JButton sendButton = new JButton("전송");
 		sendButton.setBackground(ColorSet.messageSendButtonColor);
 		sendButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
@@ -145,6 +156,7 @@ public class ChatWindowPanel extends JPanel {
 	}
 
 	private void writeMessageArea() {
+
 		textArea = new JTextArea(20, 20);
 		JScrollPane scroller = new JScrollPane(textArea);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -167,30 +179,33 @@ public class ChatWindowPanel extends JPanel {
 		add(scroller2);
 	}
 
-	public static void displayText(Message message) {
+	public static void displayComment(Message message) {
 
 		// 송유진상단바 이름이랑 sendUserName이 같으면 또 된다.
 
-		if (UserDAO.username.equals(message.getSendUserName())) {
-			rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
-					+ message.getSendUserName() + ">");
-			if (message.getMessageType().equals("file")) {
-				imgRightPrint(message.getSendComment());
-			} else {
-				rightPrint(message.getSendComment());
+		for (ChatWindowPanel chat : FriendListPanel.chatPanelName) {
+			if (UserDAO.username.equals(message.getSendUserName())
+					&& chat.panelName.equals(message.getReceiveFriendName())) {
+				chat.rightPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
+						+ message.getSendUserName() + ">");
+				if (message.getMessageType().equals("file")) {
+					// chatimgRightPrint(message.getSendComment());
+				} else {
+					chat.rightPrint(message.getSendComment());
+				}
 			}
 		}
 
 		for (ChatWindowPanel chatName : FriendListPanel.chatPanelName) {
 			if (chatName.panelName.equals(message.getSendUserName())) {
 
-				leftPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
+				chatName.leftPrint(message.getSendTime().format(DateTimeFormatter.ofPattern("aHH:mm")) + "  <"
 						+ message.getSendUserName() + ">");
 
 				if (message.getMessageType().equals("file")) {
-					imgLeftPrint(message.getSendComment());
+					// imgLeftPrint(message.getSendComment());
 				} else {
-					leftPrint(message.getSendComment());
+					chatName.leftPrint(message.getSendComment());
 				}
 
 			}
@@ -210,40 +225,74 @@ public class ChatWindowPanel extends JPanel {
 		g3.draw(lin2);
 	}
 
-	private static void imgRightPrint(String sendComment) {
+	// private static void imgRightPrint(String sendComment) {
+	//
+//		    byte[] loadFile = getLoadFile(sendComment);
+	//
+	//
+//		    Image imgFile = UseImageFile.getImage(sendComment);
+//		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+	//
+//		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+//		    Style style2 = doc2.addStyle("StyleName", null);
+//		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+//		    try {
+//		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+//		    } catch (BadLocationException e) {
+//		      e.printStackTrace();
+//		    }
+	// }
 
-		Image imgFile = UseImageFile.getImage(sendComment);
-		Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+//	private static byte[] getLoadFile(String filePath) {
+//
+//		File file = new File(filePath);
+//		byte[] loadFile = new byte[(int) file.length()];
+//		BufferedInputStream bufferedInputStream;
+//		try {
+//			bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+//			bufferedInputStream.read(loadFile, 0, loadFile.length);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return loadFile;
+//
+//	}
 
-		StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-		Style style2 = doc2.addStyle("StyleName", null);
-		StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+	// private static void imgLeftPrint(String sendComment) {
+	//
+//		    Image imgFile = UseImageFile.getImage(sendComment);
+//		    Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+	//
+//		    StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+//		    Style style2 = doc2.addStyle("StyleName", null);
+//		    StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+//		    try {
+//		      doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+//		    } catch (BadLocationException e) {
+//		      e.printStackTrace();
+//		    }
+	// }
+	//
+	// private static void imgLeftPrint(File sendComment) {
+	//
+	// Image imgFile = UseImageFile.getImage(sendComment);
+	// Image imgResize = imgFile.getScaledInstance(200, 200,
+	// java.awt.Image.SCALE_SMOOTH);
+	//
+	// StyledDocument doc2 = (StyledDocument) jtp.getDocument();
+	// Style style2 = doc2.addStyle("StyleName", null);
+	// StyleConstants.setIcon(style2, new ImageIcon(imgResize));
+	// try {
+	// doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
+	// } catch (BadLocationException e) {
+	// e.printStackTrace();
+	// }
+	// }
+
+	private void rightPrint(String string) {
+
 		try {
-			doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static void imgLeftPrint(String sendComment) {
-
-		Image imgFile = UseImageFile.getImage(sendComment);
-		Image imgResize = imgFile.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-
-		StyledDocument doc2 = (StyledDocument) jtp.getDocument();
-		Style style2 = doc2.addStyle("StyleName", null);
-		StyleConstants.setIcon(style2, new ImageIcon(imgResize));
-		try {
-			doc2.insertString(doc2.getLength(), "invisible text" + "\n", style2);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static void rightPrint(String string) {
-
-		try {
-
+			document = jtp.getStyledDocument();
 			SimpleAttributeSet right = new SimpleAttributeSet();
 			StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
 			document.setParagraphAttributes(document.getLength(), document.getLength() + 1, right, true);
@@ -254,9 +303,10 @@ public class ChatWindowPanel extends JPanel {
 		}
 	}
 
-	private static void leftPrint(String string) {
+	private void leftPrint(String string) {
 
 		try {
+			document = jtp.getStyledDocument();
 			SimpleAttributeSet left = new SimpleAttributeSet();
 			StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
 			document.setParagraphAttributes(document.getLength(), document.getLength() + 1, left, true);

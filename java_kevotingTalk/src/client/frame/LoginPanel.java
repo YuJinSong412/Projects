@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import server.userDB.UserDAO;
-import util.enumPackage.CommonWord;
+
+import enumpackage.CommonWord;
+import server.userdb.UserDAO;
+import util.UserInfoPanel;
 
 @SuppressWarnings("serial")
+
 public class LoginPanel extends UserInfoPanel {
 
   private final String LOGIN = "로그인";

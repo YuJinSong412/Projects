@@ -11,13 +11,14 @@ show tables;
 
 drop table member_table;
 
-INSERT INTO MEMBER_TABLE VALUES('송유진','s','s');
-insert into MEMBER_TABLE values('김호수','g','g');
-insert into MEMBER_TABLE values('노수일','n','n');
-insert into MEMBER_TABLE values('정혜라','j','j');
+INSERT INTO MEMBER_TABLE VALUES('송유진','songij4@gmail.com','dbwls123@');
+insert into MEMBER_TABLE values('김호수','ghtnfhfp4@gmail.com','1q2w3e4r!!');
+insert into MEMBER_TABLE values('노수일','food8123@gmail.com','asdasd12');
+insert into MEMBER_TABLE values('정혜라','hrjeong@gmail.com','1234*');
 
 select * from MEMBER_TABLE;
 
+delete from member_table where uemail='songsm4@gmail.com';
 
 /*테이블 생성*/
 create table friendList(
@@ -31,21 +32,23 @@ create table friendList(
    references member_table (uemail)
 ) ENGINE=MYISAM CHARSET=utf8;
 
-insert into friendList values(1,'s','g');
-insert into friendList values(2,'s','n');
-insert into friendList values(3,'s','j');
+drop table friendList;
 
-insert into friendList values(4,'g','s');
-insert into friendList values(5,'g','n');
-insert into friendList values(6,'g','j');
+insert into friendList values(1,'songij4@gmail.com','ghtnfhfp4@gmail.com');
+insert into friendList values(2,'songij4@gmail.com','food8123@gmail.com');
+insert into friendList values(3,'songij4@gmail.com','hrjeong@gmail.com');
 
-insert into friendList values(7,'n','g');
-insert into friendList values(8,'n','s');
-insert into friendList values(9,'n','j');
+insert into friendList values(4,'ghtnfhfp4@gmail.com','songij4@gmail.com');
+insert into friendList values(5,'ghtnfhfp4@gmail.com','food8123@gmail.com');
+insert into friendList values(6,'ghtnfhfp4@gmail.com','hrjeong@gmail.com');
 
-insert into friendList values(10,'j','g');
-insert into friendList values(11,'j','n');
-insert into friendList values(12,'j','s');
+insert into friendList values(7,'food8123@gmail.com','ghtnfhfp4@gmail.com');
+insert into friendList values(8,'food8123@gmail.com','songij4@gmail.com');
+insert into friendList values(9,'food8123@gmail.com','hrjeong@gmail.com');
+
+insert into friendList values(10,'hrjeong@gmail.com','ghtnfhfp4@gmail.com');
+insert into friendList values(11,'hrjeong@gmail.com','food8123@gmail.com');
+insert into friendList values(12,'hrjeong@gmail.com','songij4@gmail.com');
 
 select * from friendList;
 

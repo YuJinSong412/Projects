@@ -1,4 +1,4 @@
-package client.dataCommunication;
+package client.datacommunication;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,8 +10,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import client.frame.ChatWindowPanel;
-import server.dataCommunication.Message;
-import server.userDB.UserDAO;
+import server.datacommunication.Message;
+import server.userdb.UserDAO;
 
 public class ClientSocket {
 
@@ -28,8 +28,6 @@ public class ClientSocket {
           socket = new Socket();
           socket.connect(new InetSocketAddress("localhost", 5027));
           System.out.println("연결 요청");
-          setName(UserDAO.username);
-          System.out.println(getName());
           // -> socket 생성 및 연결 요청
         } catch (IOException e) {
           System.out.println("서버 통신 안됨");
@@ -79,7 +77,7 @@ public class ClientSocket {
         
         Message ms = toObject(recvBuffer, Message.class);
         
-        ChatWindowPanel.displayText(ms);
+        ChatWindowPanel.displayComment(ms);
         
       } catch (IOException e) {
         e.printStackTrace();

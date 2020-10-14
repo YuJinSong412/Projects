@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import server.dataCommunication.Message;
-import server.userDB.UserDAO;
+import server.datacommunication.Message;
+import server.userdb.UserDAO;
 import util.ColorSet;
 import util.UseImageFile;
 import util.UserProfileButton;
@@ -70,6 +70,7 @@ public class FriendListPanel extends JPanel {
 					if (friendButtons.get(idx).getText().contains("대화 중..")) {
 						// 작동x
 					} else {
+						
 						friendButtons.get(idx).setText(friendButtons.get(idx).getText() + "       대화 중..");
 
 						String messageType = "text";
@@ -93,3 +94,4 @@ public class FriendListPanel extends JPanel {
 	}
 
 }
+//처음에는 

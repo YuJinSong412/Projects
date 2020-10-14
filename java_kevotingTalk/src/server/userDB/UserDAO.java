@@ -1,4 +1,4 @@
-package server.userDB;
+package server.userdb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import client.dataCommunication.ClientSocket;
+import client.datacommunication.ClientSocket;
 import client.frame.ErrorMessagePanel;
 import client.frame.IndexPanel;
 import client.frame.MainPanel;
@@ -68,6 +69,8 @@ public class UserDAO {
 
 			MainPanel mainPanel = new MainPanel(MainPanel.frame);
 			MainPanel.frame.change(mainPanel);
+			
+			JOptionPane.showMessageDialog(mainPanel, "회원가입 성공!!!", "회원가입", JOptionPane.WARNING_MESSAGE);
 
 		} catch (SQLException e) {
 			ErrorMessagePanel errorPanel = new ErrorMessagePanel("회원가입");
@@ -103,6 +106,8 @@ public class UserDAO {
 				MainPanel.frame.change(indexPanel);
 
 				clientSocket.startClient();
+				
+				JOptionPane.showMessageDialog(indexPanel, "로그인 성공!!!", "로그인", JOptionPane.WARNING_MESSAGE);
 
 			} else if (username == null) {
 				ErrorMessagePanel err = new ErrorMessagePanel("로그인");
